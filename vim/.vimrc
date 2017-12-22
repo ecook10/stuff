@@ -101,6 +101,11 @@ nohlsearch
 highlight ExtraWhitespace ctermbg=red
 match ExtraWhitespace /\s\+\%#\@<!$/
 
+" Search shortcuts
+nnoremap <leader>/ <c-o>
+nnoremap / ms/
+nnoremap * ms*
+nmap <leader>bb /byebug<cr>
 
 " Always show status line
 set laststatus=2
@@ -189,6 +194,9 @@ nnoremap <leader>" ea"<esc>bi"<esc>el
 " make word lower/uppercase
 nnoremap <leader>U lbviwUe
 nnoremap <leader>u lbviwue
+
+" comment line (TODO make specific to filetype)
+nnoremap <leader>/ 0i#<esc>
 
 " }}}
 
