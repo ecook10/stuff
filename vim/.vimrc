@@ -29,7 +29,7 @@ Plugin 'wesQ3/vim-windowswap'
 " Plugin 'jalvesaq/Nvim-R'
 
 " Syntax checker
-Plugin 'scrooloose/syntastic'
+Plugin 'vim-syntastic/syntastic'
 
 " Save Ctags automatically (on Git commits I beleive)
 " Plugin 'craigemery/vim-autotag'
@@ -83,9 +83,9 @@ colorscheme jellybeans
 syntax enable
 
 " Tabs
-set tabstop=2
-set softtabstop=2
-set shiftwidth=2
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
 set expandtab
 
 " UI Config
@@ -106,6 +106,7 @@ nnoremap <leader>/ <c-o>
 nnoremap / ms/
 nnoremap * ms*
 nmap <leader>bb /byebug<cr>
+vnoremap // y/\V<C-R>"<CR>
 
 " Always show status line
 set laststatus=2
@@ -121,7 +122,9 @@ set statusline+=%l        " Current line
 set statusline+=/         " Separator
 set statusline+=%L        " Total lines
 
-set nowrap
+" Word wrapping (http://vim.wikia.com/wiki/Automatic_word_wrapping)
+set wrap linebreak
+set tw=0
 
 " }}}
 
@@ -161,8 +164,8 @@ nnoremap <leader>evc :split ~/.vim/ftplugin/c.vim<cr>
 nnoremap U <c-r>
 
 " 'Stronger Navigation
-nnoremap H I<esc>
-nnoremap L A<esc>
+nnoremap H ^
+nnoremap L $
 nnoremap J <c-d>
 nnoremap K <c-u>
 
