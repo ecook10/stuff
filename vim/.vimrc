@@ -18,18 +18,22 @@ call vundle#begin()
 " Plugin manager
 Plugin 'gmarik/Vundle.vim'
 
-" Python folding/indenting
-Plugin 'tmhedberg/SimpylFold'
-Plugin 'vim-scripts/indentpython.vim'
+" Syntax checker
+Plugin 'vim-syntastic/syntastic'
 
 " Better window swapping
 Plugin 'wesQ3/vim-windowswap'
 
+" File system explorer
+Plugin 'scrooloose/nerdtree'
+Plugin 'Xuyuanp/nerdtree-git-plugin'
+
+" Python folding/indenting
+Plugin 'tmhedberg/SimpylFold'
+Plugin 'vim-scripts/indentpython.vim'
+
 " R plugin
 " Plugin 'jalvesaq/Nvim-R'
-
-" Syntax checker
-Plugin 'vim-syntastic/syntastic'
 
 " Save Ctags automatically (on Git commits I beleive)
 " Plugin 'craigemery/vim-autotag'
@@ -65,6 +69,19 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_quiet_messages = { "level": "warnings" }
+
+" }}}
+
+" NERDTree ------------------------- {{{
+
+map <C-1> :NERDTreeToggle<CR>
+augroup nerdtree
+    autocmd!
+
+    autocmd StdinReadPre * let s:std_in=1
+    autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+    autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
+augroup END
 
 " }}}
 
@@ -237,5 +254,12 @@ augroup filetype_R
 augroup END
 " }}}
 
+" VimScript ----------------- {{{
+augroup filetype_Vim
+    autocmd!
+
+    "Set correct fold
+    autocmd FileType vim setlocal foldmethod=marker
+" }}}
 
 " }}}
