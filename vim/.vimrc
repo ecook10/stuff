@@ -28,6 +28,11 @@ Plugin 'wesQ3/vim-windowswap'
 Plugin 'scrooloose/nerdtree'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 
+" Fuzzy finder
+" NOTE: Requires fzf installed (`$ brew install fzf`)
+set rtp+=/usr/local/opt/fzf
+Plugin 'junegunn/fzf.vim'
+
 " Python folding/indenting
 Plugin 'tmhedberg/SimpylFold'
 Plugin 'vim-scripts/indentpython.vim'
@@ -179,7 +184,7 @@ nnoremap <Right> :vertical resize +2<CR>
 
 " Quick vimrc editing/saving
 nnoremap <leader>ev :split $MYVIMRC<cr>
-nnoremap <leader>sv :source $MYVIMRC<cr>
+nnoremap <leader>sv :w $MYVIMRC<cr>:source $MYVIMRC<cr>
 nnoremap <leader>evc :split ~/.vim/ftplugin/c.vim<cr>
 
 " Better Redo
