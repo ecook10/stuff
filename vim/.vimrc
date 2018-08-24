@@ -74,7 +74,7 @@ let g:syntastic_quiet_messages = { "level": "warnings" }
 
 " NERDTree ------------------------- {{{
 
-map <C-1> :NERDTreeToggle<CR>
+nnoremap <leader>1 :NERDTreeToggle<CR>
 augroup nerdtree
     autocmd!
 
@@ -112,7 +112,6 @@ set showmatch
 
 " Search Highlighting
 set hlsearch incsearch
-nnoremap <leader><esc> :noh<cr>
 nohlsearch
 
 highlight ExtraWhitespace ctermbg=red
@@ -167,6 +166,12 @@ nnoremap <leader>b :ls<cr>
 
 " Open previous buffer in new window
 nnoremap <leader>pb :execute "split " . bufname("#")<cr>
+
+" Map arrow keys to window resize
+nnoremap <Up> :resize +2<CR>
+nnoremap <Down> :resize -2<CR>
+nnoremap <Left> :vertical resize -2<CR>
+nnoremap <Right> :vertical resize +2<CR>
 
 " }}}
 
