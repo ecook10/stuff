@@ -6,6 +6,10 @@
 " tutorial (http://learnvimscriptthehardway.stevelosh.com/)
 
 
+let mapleader=","
+let maplocalleader="\\"
+
+
 " Plugins --------------------- {{{
 
 set nocompatible
@@ -33,9 +37,15 @@ Plugin 'Xuyuanp/nerdtree-git-plugin'
 set rtp+=/usr/local/opt/fzf
 Plugin 'junegunn/fzf.vim'
 
+" Pretty status line
+Plugin 'vim-airline/vim-airline'
+
 " Python folding/indenting
 Plugin 'tmhedberg/SimpylFold'
 Plugin 'vim-scripts/indentpython.vim'
+
+" Git wrapper
+Plugin 'tpope/vim-fugitive'
 
 " R plugin
 " Plugin 'jalvesaq/Nvim-R'
@@ -65,15 +75,31 @@ autocmd BufWinLeave *.py setlocal foldexpr< foldmethod<
 
 " Syntastic ---------------------- {{{
 
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_quiet_messages = { "level": "warnings" }
+
+nnoremap <leader>st :SyntasticToggleMode<cr>
+nnoremap <leader>sc :SyntasticCheck<cr>
+
+" Scala --------------------------- {{{
+let g:syntastic_scala_checkers = ['scalac', 'scalastyle']
+let g:syntastic_scala_scalastyle_jar = '~/Dev/scalastyle/scalastyle_2.12-1.0.0-batch.jar'
+let g:syntastic_scala_scalastyle_config_file = '~/Dev/scalastyle/scalastyle_config.xml'
+" }}}
+
+" JavaScript ---------------------- {{{
+let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_javascript_eslint_exe = 'node_modules/.bin/eslint'
+" }}}
+
+" Java ---------------------- {{{
+let g:syntastic_java_checkers = ['checkstyle']
+let g:syntastic_java_checkstyle_classpath = '~/Dev/checkstyle/checkstyle-8.12-all.jar'
+let g:syntastic_java_checkstyle_conf_file = '~/Dev/checkstyle/sun_checks.xml'
+" }}}
 
 " }}}
 
@@ -88,6 +114,10 @@ augroup nerdtree
     autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
 augroup END
 
+" }}}
+
+" FZF ---------------------------- {{{
+nnoremap <leader>f :Files<cr>
 " }}}
 
 " }}}
@@ -154,9 +184,6 @@ set tw=0
 
 " Misc --------------------- {{{
 
-let mapleader=","
-let maplocalleader="\\"
-
 " Copy/paste from system cliipboard
 inoremap <c-v> <esc>"*pA
 nnoremap <c-v> "pA<esc>
@@ -165,6 +192,7 @@ nnoremap <c-y> "+Y
 
 " Quick folding
 nnoremap <space> za
+nnoremap <leader><space> zA
 
 " Show buffers
 nnoremap <leader>b :ls<cr>
