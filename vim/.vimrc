@@ -47,6 +47,9 @@ Plugin 'vim-scripts/indentpython.vim'
 " Git wrapper
 Plugin 'tpope/vim-fugitive'
 
+" Autoclose
+Plugin 'Townk/vim-autoclose'
+
 " R plugin
 " Plugin 'jalvesaq/Nvim-R'
 
@@ -117,7 +120,7 @@ augroup END
 " }}}
 
 " FZF ---------------------------- {{{
-nnoremap <leader>f :Files<cr>
+nnoremap <leader>o :Files<cr>
 " }}}
 
 " }}}
