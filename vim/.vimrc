@@ -304,3 +304,67 @@ augroup filetype_Vim
 " }}}
 
 " }}}
+
+
+" Import Completion ------------- {{{
+
+function! InsertSrcImport(export)
+    let l:export_path = split(a:export, '/')
+
+    let l:import_dir_path = ''
+    let l:curr_dir_path_rev = reverse(split(expand('%:p'), '/')[0:-2])
+    let l:pwd = split(execute('pwd'), '/')[-1]
+    let l:i = 0
+    let l:match_index = index(l:export_path, l:curr_dir_path_rev[l:i])
+    while l:match_index == -1 && l:curr_dir_path_rev[l:i] != l:pwd
+        let l:import_dir_path = l:import_dir_path . '../'
+        let l:i = l:i + 1
+        let l:match_index = index(l:export_path, l:curr_dir_path_rev[l:i])
+    endwhile
+
+    if l:import_dir_path == ''
+        let l:import_dir_path = './'
+    endif
+
+    for l:dir in l:export_path[l:match_index + 1 : -2]
+        let l:import_dir_path = l:import_dir_path .  l:dir . '/'
+    endfor
+
+    call InsertImport(l:import_dir_path, l:export_path[-1])
+endfunction
+
+function! InsertModuleImport(export)
+    call InsertImport('', a:export)
+endfunction
+
+function! InsertImport(dir_path, name)
+    let l:import = split(a:name, '\.')
+    let l:dir_path = a:dir_path
+    if l:import[0] == 'index'
+        let l:import[0] = ''
+        let l:dir_path = l:dir_path[0:-2]
+    endif
+    if len(l:import) == 1
+        let @i = "import default from '" . l:dir_path . l:import[0] . "';"
+    else
+        let @i = "import { " . l:import[1] . " } from '" . l:dir_path . l:import[0] . "';"
+    end
+
+    execute "normal! O\<esc>\"ip^w"
+endfunction
+
+function! FindSrcExport()
+    call fzf#run(fzf#wrap('exports', {'source': 'cat .src_exports', 'sink': function('InsertSrcImport')}, 0))
+endfunction
+
+function! FindModuleExport()
+    call fzf#run(fzf#wrap('exports', {'source': 'cat .module_exports', 'sink': function('InsertModuleImport')}, 0))
+endfunction
+
+command! ImportSrc call FindSrcExport()
+nnoremap <leader>is :ImportSrc<cr>
+
+command! ImportModule call FindModuleExport()
+nnoremap <leader>im :ImportModule<cr>
+
+" }}}
