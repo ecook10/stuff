@@ -148,6 +148,9 @@ nnoremap <leader>b :ls<cr>
 " Open previous buffer in new window
 nnoremap <leader>pb :execute "split " . bufname("#")<cr>
 
+" Toggle line numbers
+nnoremap <leader>n :set invnumber<cr>
+
 " }}}
 
 " Normal Mode --------------------- {{{
@@ -161,8 +164,8 @@ nnoremap <leader>evc :split ~/.vim/ftplugin/c.vim<cr>
 nnoremap U <c-r>
 
 " 'Stronger Navigation
-nnoremap H I<esc>
-nnoremap L A<esc>
+nnoremap H ^
+nnoremap L $
 nnoremap J <c-d>
 nnoremap K <c-u>
 
