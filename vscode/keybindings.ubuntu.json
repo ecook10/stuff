@@ -1,0 +1,67 @@
+// Place your key bindings in this file to override the defaults
+[
+    {
+        "command": "vscode-neovim.compositeEscape1",
+        "key": "j",
+        "when": "neovim.mode == insert && editorTextFocus",
+        "args": "j"
+    },
+    {
+        "command": "vscode-neovim.compositeEscape2",
+        "key": "k",
+        "when": "neovim.mode == insert && editorTextFocus",
+        "args": "k"
+    },
+    {
+        "key": "ctrl+1",
+        "command": "workbench.files.action.showActiveFileInExplorer"
+    },
+    {
+        "key": "ctrl+h",
+        "command": "workbench.action.previousEditorInGroup"
+    },
+    {
+        "key": "ctrl+l",
+        "command": "workbench.action.nextEditorInGroup"
+    },
+    {
+        "key": "ctrl+s",
+        "command": "workbench.action.splitEditorRight"
+    },
+    {
+        "key": "ctrl+shift+l",
+        "command": "workbench.action.focusRightGroup"
+    },
+    {
+        "key": "ctrl+shift+h",
+        "command": "workbench.action.focusLeftGroup"
+    },
+    {
+        "key": "ctrl+n",
+        "command": "explorer.newFile"
+    },
+    {
+        "key": "ctrl+shift+`",
+        "command": "workbench.action.terminal.toggleTerminal"
+    },
+    {
+        "key": "ctrl+alt+a ctrl+alt+s",
+        "command": "activelaziness.arduinoSupport.setCurrentSketch"
+    },
+    {
+        "key": "ctrl+alt+a ctrl+alt+u",
+        "command": "arduino.upload"
+    },
+    {
+        "key": "ctrl+alt+a ctrl+alt+v",
+        "command": "arduino.verify"
+    },
+    {
+        "key": "ctrl+alt+r",
+        "command": "-arduino.verify"
+    },
+    {
+        "key": "ctrl+alt+u",
+        "command": "-arduino.upload"
+    }
+]
