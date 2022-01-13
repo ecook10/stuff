@@ -129,7 +129,7 @@ nnoremap <leader>o :Files<cr>
 " }}}
 
 
-" Appearance --------------------- {{{
+" Config --------------------- {{{
 
 filetype plugin indent on
 
@@ -180,6 +180,9 @@ set statusline+=%L        " Total lines
 set wrap linebreak
 set tw=0
 
+" regular backspacing
+set backspace=indent,eol,start
+
 " }}}
 
 
@@ -192,6 +195,7 @@ inoremap <c-v> <esc>"*pA
 nnoremap <c-v> "pA<esc>
 vnoremap <c-c> "+y
 nnoremap <c-y> "+Y
+nnoremap <c-a> gg"*yG
 
 " Quick folding
 nnoremap <space> za
